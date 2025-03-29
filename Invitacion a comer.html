@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación a Cenar Por Nuestro Septimo Mes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Botones */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para la sección de comida */
+        select {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+        }
+
+        /* Estilo para mensajes */
+        .respuesta {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Mensaje triste */
+        .triste {
+            color: #f44336;
+        }
+
+        /* Sección oculta */
+        .hidden {
+            display: none;
+        }
+
+        /* Estilo para el mensaje emergente */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .popup button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Hola mi amor hermoso! ¿Quieres ir a cenar conmigo esta noche?💗</h1>
+
+        <!-- Botones de respuesta -->
+        <button onclick="mostrarSeccion('si')">Sí quiero mi amor💗</button>
+        <button onclick="mostrarSeccion('no')">No tengo hambre ahorita</button>
+
+        <!-- Sección si la respuesta es "Sí" -->
+        <div id="seccion_si" class="hidden">
+            <h2>¡Sabía que dirias que si! ¿Qué te gustaría comer mi amor?💗</h2>
+            <select id="comida">
+                <option value="pizza">Ya llegaron las Pipshas</option>
+                <option value="pasta">Unas Hamburguestias</option>
+                <option value="sushi">Comida China</option>
+				<option value="sushi">Comida mexicana</option>
+				<option value="sushi">No se que quiero de comer amor, en el camino lo decidire</option>
+            </select>
+            <button onclick="confirmarComida()">Confirmar</button>
+        </div>
+
+        <!-- Mensaje triste si la respuesta es "No" -->
+        <div id="seccion_no" class="hidden">
+            <h2 class="respuesta triste">:( ¡Qué triste! Tal vez otra vez.</h2>
+        </div>
+    </div>
+
+    <!-- Pop-up emergente -->
+    <div id="popup" class="popup">
+        <p>Dile a tu amorcito que quieres de comer y él te llevará.</p>
+        <button onclick="cerrarPopup()"> ¡Lo haré!</button>
+    </div>
+
+    <script>
+        function mostrarSeccion(respuesta) {
+            // Ocultar ambas secciones primero
+            document.getElementById('seccion_si').classList.add('hidden');
+            document.getElementById('seccion_no').classList.add('hidden');
+            
+            // Mostrar la sección correspondiente
+            if (respuesta === 'si') {
+                document.getElementById('seccion_si').classList.remove('hidden');
+            } else if (respuesta === 'no') {
+                document.getElementById('seccion_no').classList.remove('hidden');
+            }
+        }
+
+        function confirmarComida() {
+            const comida = document.getElementById('comida').value;
+            const mensaje = `¡Genial! Mi amiga/a ha elegido comer ${comida}.`;
+
+            // Mostrar el mensaje emergente
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function cerrarPopup() {
+            // Cerrar el pop-up
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+    
+</body>
+</html>
